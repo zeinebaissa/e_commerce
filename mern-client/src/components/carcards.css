@@ -1,0 +1,73 @@
+/* Ajoutez ces styles à votre fichier CSS */
+
+/* Style pour le conteneur principal */
+.car-cards-container {
+  margin-top: 3rem;
+  padding: 0 2rem;
+  /* Ajoutez un peu de marge sur les côtés */
+
+}
+
+/* Style pour le titre */
+.car-cards-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Style pour le conteneur du Swiper */
+.car-cards-swiper-container {
+  margin-top: 2rem;
+}
+
+/* Style pour chaque carte de voiture */
+.car-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.9s ease;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+  
+  /* Léger effet de survol */
+}
+
+/* Style pour l'image de la voiture */
+.car-card-image {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Style pour le contenu de la voiture */
+.car-card-content {
+  padding: 1rem;
+}
+
+/* Style pour la marque de la voiture */
+.car-card-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* Style pour le modèle de la voiture */
+.car-card-model {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Style pour le prix de la voiture */
+.car-card-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #007bff;
+  /* Couleur bleue pour le prix */
+}
+
+.car-cards-container {
+  margin-top: 5rem;
+  /* Ajustez cette valeur selon la hauteur de votre barre de navigation */
+}

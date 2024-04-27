@@ -1,0 +1,52 @@
+/* car-cards.css */
+
+.car-cards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .car-cards-swiper-container {
+    position: relative;
+  }
+  
+  .car-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .car-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .car-card-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .car-card-content {
+    padding: 10px;
+  }
+  
+  .car-card-brand {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .car-card-model {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .car-card-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff; /* or any color you prefer */
+  }
+  

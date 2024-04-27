@@ -1,0 +1,40 @@
+/* About.css */
+
+/* Conteneur principal */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 50px; /* Add margin to move content down */
+    background-color: #F0F0F0; /* Light blue background color */
+  }
+  
+  /* Style de l'image */
+  .about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style du texte */
+  .about-text {
+    max-width: 800px;
+  }
+  
+  .about-text h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  

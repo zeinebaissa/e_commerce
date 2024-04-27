@@ -1,0 +1,105 @@
+/* Ajoutez ces styles à votre fichier comment.css ou à un fichier CSS séparé */
+
+/* Style pour le conteneur des commentaires */
+.comment-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+  }
+  
+  /* Style pour le titre du formulaire */
+  .comment-container h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Style pour les champs de saisie */
+  .input-field,
+  .textarea-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+  }
+  
+  /* Style pour le bouton de soumission */
+  .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+
+  /* Ajoutez ces styles à votre fichier CSS */
+
+/* Style pour le conteneur du Swiper */
+.swiper-container {
+    margin-top: 30px;
+  }
+  
+  /* Style pour les slides du Swiper */
+  /* Ajoutez ces styles à votre fichier CSS */
+
+/* Style pour les slides du Swiper */
+/* Ajoutez ces styles à votre fichier CSS */
+
+/* Style pour les slides du Swiper */
+.swiper-slide {
+    background-color: #fff;
+    border-radius: 10px;
+    
+    transform-origin: center center; /* Point d'origine de la transformation */
+    margin: 50px;
+  }
+  
+
+  
+  
+  
+  /* Style pour le titre du commentaire */
+  .swiper-slide h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style pour le texte du commentaire */
+  .swiper-slide p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Style pour le lien dans chaque slide */
+  .swiper-slide a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Style pour la pagination du Swiper */
+  .swiper-pagination {
+    bottom: 10px;
+  }
+  
+  /* Style pour les points de la pagination */
+  .swiper-pagination-bullet {
+    background-color: #007bff;
+    width: 10px;
+    height: 10px;
+    opacity: 0.5;
+  }
+  
+  /* Style pour le point actif de la pagination */
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+  

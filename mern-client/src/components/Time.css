@@ -1,0 +1,32 @@
+/* YourComponent.css */
+
+.custom-table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 80%; /* Adjust the width as needed */
+    border: 2px solid #333; /* Add a border to the table */
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .custom-table th {
+    background-color: #f2f2f2; /* Add a background color to header cells */
+  }
+  
+  .custom-table td {
+    background-color: #fff; /* Add a background color to content cells */
+    text-align: center;
+  }
+  
+  .custom-table td[colspan="2"] {
+    text-align: center;
+    font-style: italic;
+    padding: 12px;
+    background-color: #e6f7ff; /* Add a background color to the spanned cell */
+  }
+  
