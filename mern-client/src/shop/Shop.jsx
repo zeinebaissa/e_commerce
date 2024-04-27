@@ -60,7 +60,7 @@ const Shop = () => {
         <div className="grid gap-8 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
           {searchResults.map(article => (
             <Card key={article._id} className="rounded-lg overflow-hidden shadow-lg">
-              <img src={article.image_url} alt="car" className="w-full h-48 object-cover" style={{width:"400px",height:"400px"}}/>
+              <img src={article.image_url} alt="article" className="w-full h-48 object-cover" style={{width:"400px",height:"400px"}}/>
               <div className="p-4" style={{color:"black"}}>
                 <h3 className="text-xl font-bold mb-2">{article.name}</h3>
                 <p className="text-lg font-semibold mb-4">{article.price}</p>

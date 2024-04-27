@@ -39,7 +39,7 @@ const articleSubmit = (e) => {
 };
 
 
-const UploadCar = () => {
+const UploadArticle = () => {
     const styles = {
         input: {
           padding: '10px',
@@ -98,4 +98,4 @@ const UploadCar = () => {
   );
 };
 
-export default UploadCar;
+export default UploadArticle;

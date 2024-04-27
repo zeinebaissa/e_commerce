@@ -2,38 +2,37 @@ import { TextInput, Textarea } from "flowbite-react";
 
 import { useParams, useLoaderData, useNavigate } from "react-router-dom";
 
-const EditService = () => {
+const EditPromotionCode = () => {
     const { id } = useParams();
-    const { name, description } = useLoaderData();
+    const { promotioncode, percentage } = useLoaderData();
     const navigate = useNavigate();
 
 
-    const serviceUpdate = (e) => {
+    const promotionCodeUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
-        const name = form.name.value;
-        const description = form.description.value;
-        //console.log(Name, Description);
+        const promotioncode = form.promotioncode.value;
+        const percentage = form.percentage.value;
 
 
 
 
 
-        const carOBJ = { name, description };
-        console.log(carOBJ);
-        fetch(`http://localhost:5000/update-service/${id}`, {
+        const PromotionOJB = { promotioncode, percentage };
+        console.log(PromotionOJB);
+        fetch(`http://localhost:5000/update-promo/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(carOBJ)
+            body: JSON.stringify(PromotionOJB)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                alert("Service updated successfully");
+                alert("Promotion Code updated successfully");
                 form.reset();
-                navigate('/admin/dashboard/manage-service')
+                navigate('/admin/dashboard/manage-promotion-code')
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -56,20 +55,20 @@ const EditService = () => {
     return (
         <div className="px-4 my-12" style={{color:"black"}}>
             <h2 className="mb-8 text-3xl font-bold">Update Promotion Code</h2>
-            <form className="flex lg:w-[1180px] flex-col flex-wrap gap-4" onSubmit={serviceUpdate}>
+            <form className="flex lg:w-[1180px] flex-col flex-wrap gap-4" onSubmit={promotionCodeUpdate}>
                 <div className="flex justify-between mb-4">
                     <div className='w-1/2 mr-2'>
                         <div className="mb-2">
-                            <label htmlFor="Name" className="block" value="Name">Name</label>
+                            <label htmlFor="Promotion Code" className="block" value="Promotion Code">Promotion Code</label>
                         </div>
-                        <TextInput id="name" className="w-full" required type="text" defaultValue={name} style={styles.input}/>
+                        <TextInput id="promotioncode" className="w-full" required type="text" defaultValue={promotioncode} style={styles.input}/>
                     </div>
                 </div>
                 <div className="">
                     <div className='mb-2'>
-                        <label htmlFor="Description" className="block" value="Description">Description</label>
+                        <label htmlFor="Percentage" className="block" value="Percentage">Percentage</label>
                     </div>
-                    <Textarea id="description" className="w-full" placeholder="Description" required rows={4} defaultValue={description} style={styles.input}/>
+                    <Textarea id="percentage" className="w-full" placeholder="Description" required  defaultValue={percentage} style={styles.input}/>
                 </div>
                 <input type="submit" value="Update" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded cursor-pointer" />
             </form>
@@ -77,4 +76,4 @@ const EditService = () => {
     );
 
 }
-export default EditService;
+export default EditPromotionCode;

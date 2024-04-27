@@ -86,7 +86,7 @@ const AllReview = ({ headline, reviews }) => {
         <form onSubmit={reviewSubmit}>
           <input type="text" placeholder="Your name" id='writer' required className="input-field" />
           <textarea placeholder="Your Review" id='comment' required className="textarea-field" />
-          <input type="submit" value="Add Your Review" className="submit-button" />
+          <input type="submit" value="Add Your Review" className="submit-button" style={{backgroundColor:'#BE185D'}} />
         </form>
       </div>
     </div>

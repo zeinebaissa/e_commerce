@@ -3,7 +3,7 @@ import { TextInput, Textarea } from "flowbite-react";
 import { useParams, useLoaderData, useNavigate } from "react-router-dom";
 //import { useState } from 'react';
 
-const EditCars = () => {
+const EditArticles = () => {
   const { id } = useParams();
   const { name, category, price, color, description, image_url } = useLoaderData();
   console.log(name, category)
@@ -47,7 +47,7 @@ const EditCars = () => {
       .then(data => {
         console.log(data);
         alert("Article updated successfully");
-        navigate('/admin/dashboard/manage-cars');
+        navigate('/admin/dashboard/manage-articles');
       })
       .catch(error => {
         console.error('Error:', error);
@@ -119,4 +119,4 @@ const EditCars = () => {
   );
 }
 
-export default EditCars;
+export default EditArticles;

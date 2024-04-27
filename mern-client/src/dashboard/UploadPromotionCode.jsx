@@ -1,5 +1,5 @@
 import { TextInput, Textarea } from "flowbite-react";
-const serviceSubmit = (e) => {
+const promotionSubmit = (e) => {
   e.preventDefault();
   const form = e.target;
   const promotioncode = form.promotioncode.value;
@@ -8,18 +8,18 @@ const serviceSubmit = (e) => {
 
 
 
-  const carOBJ = { promotioncode, percentage };
-  console.log(carOBJ);
+  const promotionOBJ = { promotioncode, percentage };
+  console.log(promotionOBJ);
   fetch("http://localhost:5000/upload-promo", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(carOBJ)
+    body: JSON.stringify(promotionOBJ)
   }).then(res => res.json())
     .then(data => {
       console.log(data);
-      alert("Service uploaded successfully");
+      alert("Promotion Code uploaded successfully");
       form.reset(); 
     })
     .catch(error => {
@@ -30,7 +30,7 @@ const serviceSubmit = (e) => {
 
 
 
-const UploadService = () => {
+const UploadPromotionCode = () => {
   const styles = {
     input: {
       padding: '10px',
@@ -42,17 +42,17 @@ const UploadService = () => {
   return (
     <div className="px-4 my-12" style={{color:"black"}}>
       <h2 className="mb-8 text-3xl font-bold">Upload Promotion Code</h2>
-      <form className="flex lg:w-[1180px] flex-col flex-wrap gap-4" onSubmit={serviceSubmit}>
+      <form className="flex lg:w-[1180px] flex-col flex-wrap gap-4" onSubmit={promotionSubmit}>
         <div className="flex flex-wrap gap-4">
           <div className='w-full'>
             <div className="mb-2">
-              <label htmlFor="Name" className="block" value="Name">Promotion Code</label>
+              <label htmlFor="Promotion Code" className="block" value="Name">Promotion Code</label>
             </div>
             <TextInput id="promotioncode" className="w-full" placeholder="Promotion Code" required type="text" style={styles.input} />
           </div>
           <div className='w-full'>
             <div className="mb-2">
-              <label htmlFor="Description" className="block" value="Brand">Percentage</label>
+              <label htmlFor="Percentage" className="block" value="Brand">Percentage</label>
             </div>
             <Textarea id="percentage" className="w-full" style={styles.input} placeholder="Percentage" required type="text" />
           </div>
@@ -63,4 +63,4 @@ const UploadService = () => {
   );
 };
 
-export default UploadService;
+export default UploadPromotionCode;

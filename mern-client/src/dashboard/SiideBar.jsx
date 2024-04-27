@@ -22,20 +22,20 @@ const SiideBar = () => {
               <Sidebar.Item href="/home" icon={HiChartPie} className="itemStyle">
                 Home
               </Sidebar.Item>
-              <Sidebar.Item href="/admin/dashboard/upload-cars" icon={HiOutlineCloudUpload} className="itemStyle">
+              <Sidebar.Item href="/admin/dashboard/upload-Articles" icon={HiOutlineCloudUpload} className="itemStyle">
                 Upload Article
               </Sidebar.Item>
-              <Sidebar.Item href="/admin/dashboard/manage-cars" icon={HiInbox} className="itemStyle">
+              <Sidebar.Item href="/admin/dashboard/manage-Articles" icon={HiInbox} className="itemStyle">
                 Manage Articles
               </Sidebar.Item>
-              <Sidebar.Item href="/admin/dashboard/upload-services" icon={HiOutlineCloudUpload} className="itemStyle">
+              <Sidebar.Item href="/admin/dashboard/upload-promotion-code" icon={HiOutlineCloudUpload} className="itemStyle">
                 Upload Promotion
               </Sidebar.Item>
-              <Sidebar.Item href="/admin/dashboard/manage-service" icon={HiInbox} className="itemStyle">
+              <Sidebar.Item href="/admin/dashboard/manage-promotion-code" icon={HiInbox} className="itemStyle">
                 Manage Promotion
               </Sidebar.Item>
-              <Sidebar.Item href="/admin/dashboard/manage-contact" icon={HiInbox} className="itemStyle">
-                Manage Contact
+              <Sidebar.Item href="/admin/dashboard/manage-users" icon={HiInbox} className="itemStyle">
+                Manage Users
               </Sidebar.Item>
               <Sidebar.Item href="/admin/dashboard/manage-review" icon={HiInbox} className="itemStyle">
                 Manage Review

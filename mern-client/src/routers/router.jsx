@@ -15,18 +15,18 @@ import Basket from "../components/Basket";
 import Information from "../components/Information";
 import DashboardLayout from "../dashboard/DashboardLayout";
 import Dashboard from "../dashboard/Dashboard";
-import Upload from "../dashboard/UploadCar";
-import ManageCars from "../dashboard/ManageCars";
-import EditCars from "../dashboard/EditCars";
-import ManageContact from "../dashboard/ManageContact";
+import UploadArticle from "../dashboard/UploadArticle";
+import ManageArticles from "../dashboard/ManageArticles";
+import EditArticles from "../dashboard/EditArticles";
 import ManageReview from "../dashboard/ManageReview";
-import UploadService from "../dashboard/UploadService";
-import ManageService from "../dashboard/ManageService";
-import EditService from "../dashboard/EditService";
+import UploadPromotionCode from "../dashboard/UploadPromotionCode";
+import ManagePromotionCode from "../dashboard/ManagePromotionCode";
+import EditPromotionCode from "../dashboard/EditPromotionCode";
 import SignIn from "../client/SignIn";
 import SignUp from "../client/SignUp";
-//import ChangePassword from "../dashboard/ChangePassword";
 import LogOut from "../dashboard/LogOut";
+import EditUser from "../dashboard/EditUser"
+import ManageUsers from "../dashboard/ManageUsers";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -91,40 +91,46 @@ const router = createBrowserRouter([
         element: <Dashboard />
       },
       {
-        path: '/admin/dashboard/upload-cars',
-        element: <Upload />
+        path: '/admin/dashboard/upload-Articles',
+        element: <UploadArticle />
       },
       {
-        path: '/admin/dashboard/manage-cars',
-        element: <ManageCars />
+        path: '/admin/dashboard/manage-Articles',
+        element: <ManageArticles />
       },
       {
-        path: '/admin/dashboard/edit-cars/:id',
-        element: <EditCars />,
+        path: '/admin/dashboard/edit-Articles/:id',
+        element: <EditArticles />,
         loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       },
-      {
-        path: '/admin/dashboard/manage-contact',
-        element: <ManageContact />
 
-      },
       {
         path: '/admin/dashboard/manage-review',
         element: <ManageReview />
 
       },
       {
-        path: '/admin/dashboard/upload-services',
-        element: <UploadService />
+        path: '/admin/dashboard/upload-promotion-code',
+        element: <UploadPromotionCode />
       },
       {
-        path: '/admin/dashboard/manage-service',
-        element: <ManageService />
+        path: '/admin/dashboard/manage-promotion-code',
+        element: <ManagePromotionCode />
 
       },
       {
-        path: '/admin/dashboard/edit-service/:id',
-        element: <EditService />,
+        path: '/admin/dashboard/manage-users',
+        element: <ManageUsers />
+
+      },
+      {
+        path: '/admin/dashboard/edit-user/:id',
+        element: <EditUser />,
+        loader: ({ params }) => fetch(`http://localhost:5000/client/${params.id}`)
+      },
+      {
+        path: '/admin/dashboard/edit-promotion-code/:id',
+        element: <EditPromotionCode />,
         loader: ({ params }) => fetch(`http://localhost:5000/promo/${params.id}`)
       },
 

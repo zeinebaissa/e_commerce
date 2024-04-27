@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import del from "../assets/delete.png";
 import edit from "../assets/edit.png";
 
-const ManageCars = () => {
+const ManageArticles = () => {
   const [allArticles, setAllArticles] = useState([]);
 
   useEffect(() => {
@@ -68,4 +68,4 @@ const ManageCars = () => {
   );
 };
 
-export default ManageCars;
+export default ManageArticles;

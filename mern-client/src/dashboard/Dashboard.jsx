@@ -8,6 +8,7 @@ const Dashboard = () => {
     justifyContent: 'center',
     height: '100vh', 
     width: '100%', 
+    color: 'black'
   };
 
   const titleStyle = {
@@ -22,7 +23,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle}  >
       <h1 style={titleStyle}>Welcome to your workspace</h1>
       <p style={infoStyle}>This is the admin part of FOR HER Store.</p>
     </div>
