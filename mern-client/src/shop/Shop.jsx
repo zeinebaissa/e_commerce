@@ -17,11 +17,12 @@ const Shop = () => {
 
   useEffect(() => {
     const results = articles.filter(article =>
-      article.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.gategory.toLowerCase().includes(searchTerm.toLowerCase())
+      (article.name && article.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (article.category && article.category.toLowerCase().includes(searchTerm.toLowerCase()))
     );
     setSearchResults(results);
   }, [searchTerm, articles]);
+  
 
   const handleSearch = () => {
     const results = articles.filter(article =>
@@ -78,7 +79,7 @@ const Shop = () => {
           Add to Cart
         </button>
       </Link>
-                      <Link to={`/car/${article._id}`}>
+                      <Link to={`/article/${article._id}`}>
         <button 
           className="bg-green-700 text-white px-3 py-1 rounded-full text-sm focus:outline-none transition duration-300"
           style={{ 

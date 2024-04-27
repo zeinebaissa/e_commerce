@@ -7,10 +7,10 @@ import About from "../components/About";
 
 import Home from "../home/Home";
 
-//import SingleCar from "../shop/SingleCar";
+import SingleArticle from "../shop/SingleArticle";
 
 import WhyUs from "../home/WhyUs";
-import Contact from "../components/Contact";
+
 import Basket from "../components/Basket";
 import Information from "../components/Information";
 import DashboardLayout from "../dashboard/DashboardLayout";
@@ -25,9 +25,8 @@ import ManageService from "../dashboard/ManageService";
 import EditService from "../dashboard/EditService";
 import SignIn from "../client/SignIn";
 import SignUp from "../client/SignUp";
-import ChangePassword from "../dashboard/ChangePassword";
+//import ChangePassword from "../dashboard/ChangePassword";
 import LogOut from "../dashboard/LogOut";
-import SingleArticle from "../shop/SingleArticle";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,10 +51,10 @@ const router = createBrowserRouter([
         path: '/whyus',
         element: <WhyUs />
       },
-    
+
       {
         path: '/basket',
-        element:<Basket/>
+        element: <Basket />
       },
       {
         path: '/information',
@@ -64,13 +63,9 @@ const router = createBrowserRouter([
 
 
       {
-        path: '/contact',
-        element: <Contact />
-      },
-      {
-        path: "/car/:id",
+        path: "/article/:id",
         element: <SingleArticle />,
-        loader: ({ params }) => fetch(`http://localhost:5000/car/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       },
 
 
@@ -132,11 +127,7 @@ const router = createBrowserRouter([
         element: <EditService />,
         loader: ({ params }) => fetch(`http://localhost:5000/promo/${params.id}`)
       },
-      {
-        path: '/admin/dashboard/change-password/:id',
-        element: <ChangePassword />,
-        loader: ({ params }) => fetch(`http://localhost:5000/signin/${params.id}`)
-      },
+
       {
         path: '/admin/dashboard/logout',
         element: <LogOut />

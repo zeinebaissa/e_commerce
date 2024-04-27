@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import './carcards.css'
+//import './carcards.css'
 
 //import './styles.css';
 // eslint-disable-next-line react/prop-types

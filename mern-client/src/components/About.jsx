@@ -5,12 +5,10 @@ import "./About.css"; // Assurez-vous d'importer votre fichier CSS pour le style
 const About = () => {
   return (
     <div className="about-container">
-      {/* Image */}
       <div className="about-image">
         <img src={about} alt="banner" />
       </div>
-      
-      {/* Texte */}
+
       <div className="about-text">
         <h2>About Our STORE </h2>
         <br />
