@@ -15,14 +15,44 @@ const SingleArticle = () => {
     setQuantity(event.target.value);
   };
 
+  const addToCart = (article) => {
+    const articleWithQuantity = { ...article, quantity: 1 }; // Add quantity property to the article object
+    fetch('http://localhost:5000/upload-basket', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(articleWithQuantity), // Send article with quantity
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Item added to cart successfully.');
+        // Optionally, you can update the local state or UI to reflect the change
+      } else {
+        console.error('Failed to add item to cart.');
+      }
+    })
+    .catch(error => {
+      console.error('Error adding item to cart:', error);
+    });
+  };
+
   const handleAddToBasket = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     if (!size) {
       alert("Please select a size.");
       return;
     }
-    
-    window.location.href = "/basket"; 
+
+    // Call the addToCart function instead of navigating directly
+    addToCart({
+      name,
+      price,
+      description,
+      image_url,
+      size,
+      quantity: parseInt(quantity), // Convert quantity to integer
+    });
   };
 
   const Container = styled.div`
@@ -84,7 +114,7 @@ const SingleArticle = () => {
 
   const ContactButton = styled.button`
     padding: 10px 20px;
-    background-color: #4caf50;
+    background-color: #D20062;
     color: #fff;
     text-decoration: none;
     border: none;
@@ -93,7 +123,7 @@ const SingleArticle = () => {
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: #45a049;
+      background-color:#FF204E;
     }
   `;
 

@@ -282,6 +282,137 @@ async function run() {
             res.send(result);
         })
 
+        //review
+        //create a collection of documents
+        const basketCollection = client.db("Store").collection("Basket");
+
+        //insert a product into the basket to the bd : post method
+        //insert a product into the basket to the bd : post method
+        app.post("/upload-basket", async (req, res) => {
+          const data = req.body;
+          // Generate a new unique identifier for the product
+          data._id = new ObjectId();
+          const result = await basketCollection.insertOne(data);
+          res.send(result);
+        })
+        //delete a product from the basket : delete method
+        // Route to delete a product from the basket
+app.delete("/delete-basket/:id", async (req, res) => {
+  try {
+      const id = req.params.id;
+      if (!ObjectId.isValid(id)) {
+          return res.status(400).send("Invalid ObjectId format");
+      }
+      const filter = { _id: new ObjectId(id) };
+      const result = await basketCollection.deleteOne(filter);
+      if (result.deletedCount === 1) {
+          res.send("Product deleted successfully");
+      } else {
+          res.status(404).send("Product not found");
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
+
+
+
+        //get all reviews from the bd : get method
+        app.get("/all-basket", async (req, res) => {
+            const basket = basketCollection.find({});
+            const result = await basket.toArray();
+            res.send(result);
+        })
+
+        //update a review from the bd :patch or put method
+        app.patch("/update-basket/:id", async (req, res) => {
+            const id = req.params.id;
+            const data = req.body;
+            const filter = { _id: new ObjectId(id) };
+            const updateDoc = {
+                $set: {
+                    id_produit: data.id_produit,
+                }
+            };
+            const options = { upsert: false };
+            const result = await basketCollection.updateOne(filter, updateDoc, options);
+            res.send(result);
+        })
+        //delete a review from the bd : delete method
+    
+
+        //get sigle review by id
+        app.get("/basket/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const result = await basketCollection.findOne(filter);
+            res.send(result);
+        })
+        // Route to delete all products from the basket
+app.delete("/delete-basket", async (req, res) => {
+  try {
+    const result = await basketCollection.deleteMany({});
+    res.send("Basket cleared successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+                //promotioncode
+        //create a collection of documents
+        const orderCollection = client.db("Store").collection("Order");
+
+        //insert a review to the bd : post method
+        app.post("/upload-order", async (req, res) => {
+            const data = req.body;
+            const result = await orderCollection.insertOne(data);
+            res.send(result);
+        })
+
+        //get all reviews from the bd : get method
+        app.get("/all-orders", async (req, res) => {
+            const order = orderCollection.find({});
+            const result = await order.toArray();
+            res.send(result);
+        })
+
+        //update a review from the bd :patch or put method
+        app.patch("/update-order/:id", async (req, res) => {
+            const id = req.params.id;
+            const data = req.body;
+            const filter = { _id: new ObjectId(id) };
+            const updateDoc = {
+                $set: {
+                    promotioncode: data.promotionCode,
+                    percentage: data.percentage
+                }
+            };
+            const options = { upsert: false };
+            const result = await orderCollection.updateOne(filter, updateDoc, options);
+            res.send(result);
+        })
+        //delete a review from the bd : delete method
+        app.delete("/delete-order/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const result = await orderCollection.deleteOne(filter);
+            res.send(result);
+        })
+
+
+        //get sigle review by id
+        app.get("/order/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const result = await orderCollection.findOne(filter);
+            res.send(result);
+        })
+
+
 
 
         // Send a ping to confirm a successful connection

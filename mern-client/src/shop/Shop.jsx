@@ -13,6 +13,7 @@ const Shop = () => {
     fetch('http://localhost:5000/all-articles')
       .then(res => res.json())
       .then(data => setArticles(data))
+      .catch(error => console.error('Error fetching articles:', error));
   }, []);
 
   useEffect(() => {
@@ -22,25 +23,37 @@ const Shop = () => {
     );
     setSearchResults(results);
   }, [searchTerm, articles]);
-  
 
-  const handleSearch = () => {
-    const results = articles.filter(article =>
-      article.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.gategory.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
+  const addToCart = (article) => {
+    const articleWithQuantity = { ...article, quantity: 1 }; // Add quantity property to the article object
+    fetch('http://localhost:5000/upload-basket', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(articleWithQuantity), // Send article with quantity
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('Item added to cart successfully.');
+        // Optionally, you can update the local state or UI to reflect the change
+      } else {
+        console.error('Failed to add item to cart.');
+      }
+    })
+    .catch(error => {
+      console.error('Error adding item to cart:', error);
+    });
   };
 
   return (
-    <div style={{ backgroundColor: '#F0F0F0', minHeight: '100vh' }}> {/* Set background color and minimum height */}
+    <div style={{ backgroundColor: '#F0F0F0', minHeight: '100vh' }}>
       <div className="mt-10 px-4 lg:px-24" style={{ marginTop: '70px', marginBottom: '5px', textAlign: 'center', marginInlineEnd: '100' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#333', marginBottom: '10px' }}>Discover Our Collection</h2>
-
         <div className="flex justify-center">
           <div className="flex mb-4">
             <input
-            style={{color:"black"}}
+              style={{color:"black"}}
               type="text"
               placeholder="Search by brand or model"
               value={searchTerm}
@@ -49,14 +62,11 @@ const Shop = () => {
             />
             <button
               className="bg-pink-700 hover:bg-pink-500 text-white px-4 py-1 rounded-md"
-              onClick={handleSearch}
             >
               Search
             </button>
           </div>
         </div>
-
-
         <div className="grid gap-8 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
           {searchResults.map(article => (
             <Card key={article._id} className="rounded-lg overflow-hidden shadow-lg">
@@ -67,31 +77,29 @@ const Shop = () => {
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
                   <div className="">
                     <div className="flex space-x-2 mb-2 lg:mb-0">
-                    <Link to={`/contact`}>
-        <button 
-          className="bg-green-700 text-white px-3 py-1 rounded-full text-sm focus:outline-none transition duration-300"
-          style={{ 
-            backgroundColor: isHovered1 ? "#5B696B" : "gray"
-          }}
-          onMouseEnter={() => setIsHovered1(true)}
-          onMouseLeave={() => setIsHovered1(false)}
-        >
-          Add to Cart
-        </button>
-      </Link>
+                      <button 
+                        className="bg-green-700 text-white px-3 py-1 rounded-full text-sm focus:outline-none transition duration-300"
+                        style={{ 
+                          backgroundColor: isHovered1 ? "#5B696B" : "gray"
+                        }}
+                        onMouseEnter={() => setIsHovered1(true)}
+                        onMouseLeave={() => setIsHovered1(false)}
+                        onClick={() => addToCart(article)}
+                      >
+                        Add to Cart
+                      </button>
                       <Link to={`/article/${article._id}`}>
-        <button 
-          className="bg-green-700 text-white px-3 py-1 rounded-full text-sm focus:outline-none transition duration-300"
-          style={{ 
-            backgroundColor: isHovered ? "#805050" : "#CE8F8A"
-          }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          More Details
-        </button>
-      </Link>
-
+                        <button 
+                          className="bg-green-700 text-white px-3 py-1 rounded-full text-sm focus:outline-none transition duration-300"
+                          style={{ 
+                            backgroundColor: isHovered ? "#805050" : "#CE8F8A"
+                          }}
+                          onMouseEnter={() => setIsHovered(true)}
+                          onMouseLeave={() => setIsHovered(false)}
+                        >
+                          More Details
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

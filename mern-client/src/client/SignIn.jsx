@@ -33,6 +33,9 @@ const SignIn = () => {
             const data = await response.json();
 
             if (data.success) {
+                // Store authentication token in local storage
+                localStorage.setItem('token', data.token);
+
                 // Navigate to the '/info' route upon successful login
                 window.location.href = '/information';
             } else {
@@ -74,7 +77,7 @@ const SignIn = () => {
                 <button type="submit" className="login__button" style={{color:"black"}}>Login</button>
 
                 <p className="login__register">
-                    Don t have an account? <Link to="/signup">Register</Link>
+                    Dont have an account? <Link to="/signup">Register</Link>
                     <br />
                     <Link to="/home">Return to Home Page</Link>
                 </p>
