@@ -28,6 +28,9 @@ const SiideBar = () => {
               <Sidebar.Item href="/admin/dashboard/manage-Articles" icon={HiInbox} className="itemStyle">
                 Manage Articles
               </Sidebar.Item>
+              <Sidebar.Item href="/admin/dashboard/manage-orders" icon={HiInbox} className="itemStyle">
+                Manage Orders
+              </Sidebar.Item>
               <Sidebar.Item href="/admin/dashboard/upload-promotion-code" icon={HiOutlineCloudUpload} className="itemStyle">
                 Upload Promotion
               </Sidebar.Item>

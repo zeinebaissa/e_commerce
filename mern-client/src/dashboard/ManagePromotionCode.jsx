@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Table } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import del from "../assets/delete.png";
-import edit from "../assets/edit.png";
+
 
 const ManagePromotionCode = () => {
   const [allPromotionCode, setAllPromotionCode] = useState([]);
@@ -45,9 +45,6 @@ const ManagePromotionCode = () => {
               <Table.Cell>{PromotionCode.promotioncode}</Table.Cell>
               <Table.Cell>{PromotionCode.percentage}</Table.Cell>
               <Table.Cell className="flex justify-center">
-                <Link to={`/admin/dashboard/edit-promotion-code/${PromotionCode._id}`}>
-                  <img src={edit} className="w-6 h-6 mr-3" alt="Edit" />
-                </Link>
                 <button onClick={() => handleDelete(PromotionCode._id)}>
                   <img src={del} className="w-6 h-6" alt="Delete" />
                 </button>

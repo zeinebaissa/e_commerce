@@ -32,12 +32,10 @@ const SignIn = () => {
 
             const data = await response.json();
 
-            if (data.success) {
-                // Store authentication token in local storage
-                localStorage.setItem('token', data.token);
-
-                // Navigate to the '/info' route upon successful login
-                window.location.href = '/information';
+            if (data.success && data.user) {
+                // Redirect to the '/information' route upon successful login
+                const userId = data.user._id; 
+                window.location.href = `/information/${userId}`;
             } else {
                 alert('Invalid email or password');
             }

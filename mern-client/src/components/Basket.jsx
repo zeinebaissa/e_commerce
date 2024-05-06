@@ -93,7 +93,9 @@ const Basket = () => {
       comments: formData.comments,
       products: products.map(product => ({
         productId: product._id,
-        quantity: product.quantity
+        name: product.name,
+        quantity: product.quantity,
+        size: product.size
       })),
       totalPrice: totalPriceAfterDiscount
     };

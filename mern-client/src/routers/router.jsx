@@ -1,16 +1,10 @@
-import {
-  createBrowserRouter
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Shop from "../shop/Shop";
 import About from "../components/About";
-
 import Home from "../home/Home";
-
 import SingleArticle from "../shop/SingleArticle";
-
 import WhyUs from "../home/WhyUs";
-
 import Basket from "../components/Basket";
 import Information from "../components/Information";
 import DashboardLayout from "../dashboard/DashboardLayout";
@@ -21,12 +15,13 @@ import EditArticles from "../dashboard/EditArticles";
 import ManageReview from "../dashboard/ManageReview";
 import UploadPromotionCode from "../dashboard/UploadPromotionCode";
 import ManagePromotionCode from "../dashboard/ManagePromotionCode";
-import EditPromotionCode from "../dashboard/EditPromotionCode";
+import Orders from "../dashboard/ManageOrder";
 import SignIn from "../client/SignIn";
 import SignUp from "../client/SignUp";
 import LogOut from "../dashboard/LogOut";
-import EditUser from "../dashboard/EditUser"
+import EditUser from "../dashboard/EditUser";
 import ManageUsers from "../dashboard/ManageUsers";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,53 +30,46 @@ const router = createBrowserRouter([
       {
         path: '/home',
         element: <Home />
-
       },
       {
         path: '/shop',
         element: <Shop />
-
       },
       {
         path: '/about',
         element: <About />
-
       },
       {
         path: '/whyus',
         element: <WhyUs />
       },
-
       {
         path: '/basket',
         element: <Basket />
       },
       {
-        path: '/information',
-        element: <Information />
-      },
-
-
-      {
         path: "/article/:id",
         element: <SingleArticle />,
         loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       },
-
-
-
-
-
+      {
+        path: "information/:id",
+        element: <Information />,
+        loader: ({ params }) => fetch(`http://localhost:5000/client/${params.id}`)
+      },
     ]
   },
   {
     path: '/signin',
-    element: <SignIn />
+    element: <SignIn />,
   },
   {
     path: '/signup',
-    element: < SignUp />
+    element: <SignUp />,
+
   },
+
+
   {
     path: "/admin/dashboard",
     element: <DashboardLayout />,
@@ -103,11 +91,13 @@ const router = createBrowserRouter([
         element: <EditArticles />,
         loader: ({ params }) => fetch(`http://localhost:5000/article/${params.id}`)
       },
-
       {
         path: '/admin/dashboard/manage-review',
         element: <ManageReview />
-
+      },
+      {
+        path: '/admin/dashboard/manage-orders',
+        element: <Orders />
       },
       {
         path: '/admin/dashboard/upload-promotion-code',
@@ -116,32 +106,23 @@ const router = createBrowserRouter([
       {
         path: '/admin/dashboard/manage-promotion-code',
         element: <ManagePromotionCode />
-
       },
       {
         path: '/admin/dashboard/manage-users',
         element: <ManageUsers />
-
       },
       {
         path: '/admin/dashboard/edit-user/:id',
         element: <EditUser />,
         loader: ({ params }) => fetch(`http://localhost:5000/client/${params.id}`)
       },
-      {
-        path: '/admin/dashboard/edit-promotion-code/:id',
-        element: <EditPromotionCode />,
-        loader: ({ params }) => fetch(`http://localhost:5000/promo/${params.id}`)
-      },
 
       {
         path: '/admin/dashboard/logout',
         element: <LogOut />
-
-      }
-
+      },
     ]
   }
-
 ]);
+
 export default router;

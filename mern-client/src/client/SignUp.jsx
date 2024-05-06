@@ -1,39 +1,67 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import loginBg from './assets/img/login-bg.jpg';
-import './assets/css/styles.css'
-
-const clientSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
-
-    const clientOBJ = { name, email, password };
-    console.log(clientOBJ);
-
-    fetch("http://localhost:5000/upload-client", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(clientOBJ)
-    }).then(res => res.json())
-        .then(data => {
-            console.log(data);
-            alert("Welcome to our store !");
-            window.location.href = '/information';
-            form.reset();
-
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
-
-        });
-};
-
+import './assets/css/styles.css';
 
 function SignUp() {
+    const clientSubmit = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+    
+        // Fetch all clients from the server
+        try {
+            const response = await fetch("http://localhost:5000/all-clients");
+            if (!response.ok) {
+                throw new Error('Failed to fetch client data');
+            }
+    
+            const clients = await response.json();
+    
+            // Check if the email already exists
+            const emailExists = clients.some(client => client.email === email);
+            if (emailExists) {
+                alert("Email already exists. Please use a different email.");
+                return;
+            }
+        } catch (error) {
+            console.error('Error fetching client data:', error);
+            return;
+        }
+    
+        // If email doesn't exist, proceed to create the client
+        const clientOBJ = { name, email, password };
+        console.log(clientOBJ);
+    
+        try {
+            const response = await fetch("http://localhost:5000/upload-client", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(clientOBJ)
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to upload client data');
+            }
+    
+            const responseData = await response.json();
+            console.log(responseData);
+            alert("Welcome to our store !");
+            
+            // Redirect to information page with the client ID
+            window.location.href = `/information/${responseData._id}`;
+    
+            form.reset();
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+    
+
     return (
         <div className="login">
             <img src={loginBg} alt="login image" className="login__img" />
@@ -74,7 +102,7 @@ function SignUp() {
                 <button type="submit" className="login__button" style={{color:"black"}}>Signup</button>
 
                 <p className="login__register">
-                    Already have an account? <Link to="/signin">Register</Link>
+                    Already have an account? <Link to="/signin">Sign In</Link>
                     <br />
                     <Link to="/home">Return to Home Page</Link>
                 </p>

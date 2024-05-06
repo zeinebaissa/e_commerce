@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import {  useLoaderData } from "react-router-dom";
 import styled from "styled-components";
 
 const SingleArticle = () => {
@@ -16,13 +16,22 @@ const SingleArticle = () => {
   };
 
   const addToCart = (article) => {
-    const articleWithQuantity = { ...article, quantity: 1 }; // Add quantity property to the article object
+    const { name, price, description, image_url, quantity, size } = article;
+    const articleWithQuantityAndSize = {
+      name,
+      price,
+      description,
+      image_url,
+      quantity,
+      size
+    };
+  
     fetch('http://localhost:5000/upload-basket', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(articleWithQuantity), // Send article with quantity
+      body: JSON.stringify(articleWithQuantityAndSize),
     })
     .then(response => {
       if (response.ok) {
@@ -36,7 +45,7 @@ const SingleArticle = () => {
       console.error('Error adding item to cart:', error);
     });
   };
-
+  
   const handleAddToBasket = (event) => {
     event.preventDefault();
     if (!size) {
@@ -50,7 +59,7 @@ const SingleArticle = () => {
       price,
       description,
       image_url,
-      size,
+      size: size,
       quantity: parseInt(quantity), // Convert quantity to integer
     });
   };
