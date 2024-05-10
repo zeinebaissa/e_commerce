@@ -25,11 +25,10 @@ const articleSubmit = (e) => {
       .then(data => {
         console.log(data);
         alert("Article uploaded successfully");
-        form.reset(); // Reset the form after successful submission
+        form.reset(); 
       })
       .catch(error => {
         console.error('Error:', error);
-        // Handle error, show an alert or feedback to the user
       });
     };
 
@@ -73,12 +72,7 @@ const UploadArticle = () => {
                     </div>
                     <TextInput id="Price" className="w-full" placeholder="Price" required type="text" style={styles.input} />
                 </div>
-                <div className='w-1/2 ml-2'>
-                    <div className="mb-2">
-                        <label htmlFor="Color" className="block" value="Color">Color</label>
-                    </div>
-                    <TextInput id="Color" className="w-full" placeholder="Color" required type="text" style={styles.input} />
-                </div>
+                
             </div>
             <div className="">
                 <div className='mb-2'>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const Shop = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isHovered1, setIsHovered1] = useState(false);
+  //const [isHovered1, setIsHovered1] = useState(false);
   const [articles, setArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -24,27 +24,7 @@ const Shop = () => {
     setSearchResults(results);
   }, [searchTerm, articles]);
 
-  const addToCart = (article) => {
-    const articleWithQuantity = { ...article, quantity: 1 }; // Add quantity property to the article object
-    fetch('http://localhost:5000/upload-basket', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(articleWithQuantity), // Send article with quantity
-    })
-    .then(response => {
-      if (response.ok) {
-        console.log('Item added to cart successfully.');
-        // Optionally, you can update the local state or UI to reflect the change
-      } else {
-        console.error('Failed to add item to cart.');
-      }
-    })
-    .catch(error => {
-      console.error('Error adding item to cart:', error);
-    });
-  };
+  
 
   return (
     <div style={{ backgroundColor: '#F0F0F0', minHeight: '100vh' }}>
@@ -77,29 +57,20 @@ const Shop = () => {
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
                   <div className="">
                     <div className="flex space-x-2 mb-2 lg:mb-0">
-                      <button 
-                        className="bg-green-700 text-white px-3 py-1 rounded-full text-sm focus:outline-none transition duration-300"
-                        style={{ 
-                          backgroundColor: isHovered1 ? "#5B696B" : "gray"
-                        }}
-                        onMouseEnter={() => setIsHovered1(true)}
-                        onMouseLeave={() => setIsHovered1(false)}
-                        onClick={() => addToCart(article)}
-                      >
-                        Add to Cart
-                      </button>
-                      <Link to={`/article/${article._id}`}>
-                        <button 
-                          className="bg-green-700 text-white px-3 py-1 rounded-full text-sm focus:outline-none transition duration-300"
-                          style={{ 
-                            backgroundColor: isHovered ? "#805050" : "#CE8F8A"
-                          }}
-                          onMouseEnter={() => setIsHovered(true)}
-                          onMouseLeave={() => setIsHovered(false)}
-                        >
-                          More Details
-                        </button>
-                      </Link>
+
+                    <Link to={`/article/${article._id}`} className="flex justify-center items-center">
+  <button 
+    className="bg-green-700 text-white px-3 py-1 rounded-full text-sm focus:outline-none transition duration-300"
+    style={{ 
+      backgroundColor: isHovered ? "#805050" : "#CE8F8A"
+    }}
+    onMouseEnter={() => setIsHovered(true)}
+    onMouseLeave={() => setIsHovered(false)}
+  >
+    More Details
+  </button>
+</Link>
+
                     </div>
                   </div>
                 </div>

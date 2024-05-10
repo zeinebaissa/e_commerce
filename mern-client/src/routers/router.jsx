@@ -21,7 +21,7 @@ import SignUp from "../client/SignUp";
 import LogOut from "../dashboard/LogOut";
 import EditUser from "../dashboard/EditUser";
 import ManageUsers from "../dashboard/ManageUsers";
-
+import EditInfo from "../components/EditInfo";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +47,7 @@ const router = createBrowserRouter([
         path: '/basket',
         element: <Basket />
       },
+
       {
         path: "/article/:id",
         element: <SingleArticle />,
@@ -57,6 +58,16 @@ const router = createBrowserRouter([
         element: <Information />,
         loader: ({ params }) => fetch(`http://localhost:5000/client/${params.id}`)
       },
+      {
+        path: "edit-info/:id",
+        element: <EditInfo />,
+        loader: ({ params }) => fetch(`http://localhost:5000/client/${params.id}`)
+      },
+
+      {
+        path: "/",
+        element: <Home />
+      }
     ]
   },
   {

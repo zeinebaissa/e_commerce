@@ -74,7 +74,7 @@ async function run() {
         const filter = { _id: new ObjectId(id) };
         const updateDoc = {
           $set: {
-            username: data.username,
+            name: data.name,
             email: data.email,
             password: data.password,
           }

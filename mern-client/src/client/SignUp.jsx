@@ -1,7 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import loginBg from './assets/img/login-bg.jpg';
 import './assets/css/styles.css';
+import { Link } from 'react-router-dom';
 
 function SignUp() {
     const clientSubmit = async (e) => {
@@ -10,16 +9,22 @@ function SignUp() {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-    
+
+        // Check if email and password are admin credentials
+        if (email === 'admin@admin.com' && password === '123456') {
+            alert("Cannot create account with admin credentials.");
+            return;
+        }
+
         // Fetch all clients from the server
         try {
             const response = await fetch("http://localhost:5000/all-clients");
             if (!response.ok) {
                 throw new Error('Failed to fetch client data');
             }
-    
+
             const clients = await response.json();
-    
+
             // Check if the email already exists
             const emailExists = clients.some(client => client.email === email);
             if (emailExists) {
@@ -30,11 +35,11 @@ function SignUp() {
             console.error('Error fetching client data:', error);
             return;
         }
-    
-        // If email doesn't exist, proceed to create the client
+
+        // If email doesn't exist and not admin credentials, proceed to create the client
         const clientOBJ = { name, email, password };
         console.log(clientOBJ);
-    
+
         try {
             const response = await fetch("http://localhost:5000/upload-client", {
                 method: "POST",
@@ -43,24 +48,21 @@ function SignUp() {
                 },
                 body: JSON.stringify(clientOBJ)
             });
-    
+
             if (!response.ok) {
                 throw new Error('Failed to upload client data');
             }
-    
-            const responseData = await response.json();
-            console.log(responseData);
+
             alert("Welcome to our store !");
-            
+
             // Redirect to information page with the client ID
-            window.location.href = `/information/${responseData._id}`;
-    
+            window.location.href = '/signin';
+
             form.reset();
         } catch (error) {
             console.error('Error:', error);
         }
     };
-    
 
     return (
         <div className="login">

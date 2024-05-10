@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Basket = () => {
   const [products, setProducts] = useState([]);
   const [promoCode, setPromoCode] = useState("");
-  const [discount, setDiscount] = useState(0); // State to hold the discount amount
+  const [discount, setDiscount] = useState(0); 
   const [formData, setFormData] = useState({
     name: "",
     number: "",
@@ -50,11 +50,10 @@ const Basket = () => {
     return acc + (isNaN(productPrice) ? 0 : productPrice * product.quantity);
   }, 0);
 
-  // Calculate total price after applying discount
   const totalPriceAfterDiscount = totalPrice - discount;
 
   const applyPromoCode = (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault(); 
   
     fetch("http://localhost:5000/all-promos")
       .then((res) => res.json())
@@ -83,9 +82,8 @@ const Basket = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-    
-    // Create order object
+    e.preventDefault(); 
+
     const order = {
       customerName: formData.name,
       phoneNumber: formData.number,
@@ -106,17 +104,16 @@ const Basket = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(order) // Convert order object to JSON string
+      body: JSON.stringify(order) 
     })
     .then((res) => {
       if (res.ok) {
-        // Order uploaded successfully
+
         alert('Order uploaded successfully.');
         
 
-        // Clear the basket on the client side
         setProducts([]);
-        // Optionally, you can clear the form here
+
         setFormData({
           name: "",
           number: "",
@@ -135,7 +132,6 @@ const Basket = () => {
       }
     })
     .catch((error) => {
-      // If an error occurs during the fetch request (e.g., network error), log the error
       console.error('Error uploading order:', error);
     });
   };
@@ -163,7 +159,7 @@ const Basket = () => {
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  `;
+  `; 
 
   const PromoCodeForm = styled.form`
     display: flex;
@@ -173,13 +169,16 @@ const Basket = () => {
   `;
 
   const PromoCodeInput = styled.input`
-    width: 300px; /* Adjust the width as needed */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    font-size: 16px;
-  `;
+  width: 300px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  &:focus {
+    border-color: #007bff;
+  }
+`;
 
   const ApplyPromoCodeButton = styled.button`
     padding: 10px 20px;
@@ -268,6 +267,36 @@ const Basket = () => {
     color: #333;
   `;
 
+  const InputField = styled.input`
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #007bff;
+    }
+  `;
+
+  const TextAreaField = styled.textarea`
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #007bff;
+    }
+  `;
+
   return (
     <Container style={{color:"black"}}>
       <h1>Your Basket</h1>
@@ -299,25 +328,41 @@ const Basket = () => {
           placeholder="Enter promo code"
           value={promoCode}
           onChange={(e) => setPromoCode(e.target.value)}
-          autoFocus // Ensure the input field is focused when the component mounts
         />
         <ApplyPromoCodeButton type="submit">Apply</ApplyPromoCodeButton>
       </PromoCodeForm>
       
-      {/* New form for buying */}
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleFormChange} required />
-        <br/>
-        <br/>
-        <input type="text" name="number" placeholder="Phone Number" value={formData.number} onChange={handleFormChange} required />
-        <br/>
-        <br/>
-        <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleFormChange} required />
-        <br/>
-        <br/>
-        <textarea name="comments" placeholder="Comments" value={formData.comments} onChange={handleFormChange}></textarea>
-        <br/>
-        <br/>
+        <InputField
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleFormChange}
+          required
+        />
+        <InputField
+          type="text"
+          name="number"
+          placeholder="Phone Number"
+          value={formData.number}
+          onChange={handleFormChange}
+          required
+        />
+        <InputField
+          type="text"
+          name="address"
+          placeholder="Address"
+          value={formData.address}
+          onChange={handleFormChange}
+          required
+        />
+        <TextAreaField
+          name="comments"
+          placeholder="Comments"
+          value={formData.comments}
+          onChange={handleFormChange}
+        ></TextAreaField>
         <BuyButton type="submit">Buy</BuyButton>
       </form>
     </Container>

@@ -2,15 +2,11 @@
 //import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-//import './carcards.css'
 
-//import './styles.css';
-// eslint-disable-next-line react/prop-types
 const ArticleCards = ({ headline, articles }) => {
   return (
     <div className="car-cards-container">

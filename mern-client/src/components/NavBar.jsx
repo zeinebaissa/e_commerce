@@ -4,18 +4,12 @@ import { Link } from "react-router-dom"
 import { RiWomenLine } from "react-icons/ri";
 
 
-
-
-//import {FaBarsStaggered,FaX} from "react-icons/fa6"
 import './navbar.css'
 
 
 function NavBar() {
-    //const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSticky,setIsSticky] = useState(false);
-    // const toggleMenu=()=>{
-    //     setIsMenuOpen(!isMenuOpen);
-    // }
+
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {

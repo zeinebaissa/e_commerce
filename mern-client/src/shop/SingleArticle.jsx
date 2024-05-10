@@ -36,7 +36,6 @@ const SingleArticle = () => {
     .then(response => {
       if (response.ok) {
         alert('Item added to cart successfully.');
-        // Optionally, you can update the local state or UI to reflect the change
       } else {
         console.error('Failed to add item to cart.');
       }
@@ -53,14 +52,13 @@ const SingleArticle = () => {
       return;
     }
 
-    // Call the addToCart function instead of navigating directly
     addToCart({
       name,
       price,
       description,
       image_url,
       size: size,
-      quantity: parseInt(quantity), // Convert quantity to integer
+      quantity: parseInt(quantity),  
     });
   };
 

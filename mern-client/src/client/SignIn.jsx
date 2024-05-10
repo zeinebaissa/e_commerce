@@ -17,6 +17,12 @@ const SignIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
+        // Check if email and password match admin credentials
+        if (formData.email === 'admin@admin.com' && formData.password === '123456') {
+            window.location.href = '/admin/dashboard';
+            return;
+        }
+        
         try {
             const response = await fetch('http://localhost:5000/login', {
                 method: 'POST',
@@ -33,7 +39,6 @@ const SignIn = () => {
             const data = await response.json();
 
             if (data.success && data.user) {
-                // Redirect to the '/information' route upon successful login
                 const userId = data.user._id; 
                 window.location.href = `/information/${userId}`;
             } else {
